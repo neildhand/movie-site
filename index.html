@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Movie Site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" /> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>Welcome to the Movie Search Site</h1>
+    <div class="page-header">
+        <h1 id="header" >Welcome to NotIMDB</h1>
+    </div>
 
-    <div>
+    <div class="form-group">
         <form id="movie-form">
             <label for="movieTitle">Search Movie By Title</label>
             <input type="text" name="movieTitle" id="search">

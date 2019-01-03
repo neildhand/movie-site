@@ -1,4 +1,26 @@
 body {
     margin: 0 0;
-    background: rgb(235, 130, 118);
+    /* background: rgb(155, 145, 145); */
+    background: whitesmoke;
+}
+
+#header {
+    text-align: center;
+}
+
+#result .row {
+    margin: 50px; 
+}
+
+.form-group {
+    text-align: center;
+}
+
+#movie-form {
+    display: inline-block;
+}
+
+.col-md-6 img {
+    margin: 0 auto;
+    
 }

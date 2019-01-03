@@ -20,8 +20,8 @@ form.onsubmit = function(event) {
             if(!document.getElementById('result').hasChildNodes()) {
                 console.log('has no children');
 
-                var divEl = document.createElement('div');
-                var descDiv = document.createElement('div');
+                //var rowDiv = document.createElement('div');
+                //var descDiv = document.createElement('div');
     
                 for(var i = 0; i < result.Search.length; i++) {
                     var movieId = result.Search[i].imdbID;
@@ -30,7 +30,11 @@ form.onsubmit = function(event) {
                         url: `http://www.omdbapi.com/?i=${movieId}&plot=full&apikey=7c05aa35`,
                         method: "GET",
                     }).done(function(res) {
-    
+
+                        var rowDiv = document.createElement('div');
+                        var descDiv = document.createElement('div');
+                        var imgDiv = document.createElement('div');
+
                         var imgEl = document.createElement('img');
 
                         console.log(res.Poster);
@@ -40,8 +44,9 @@ form.onsubmit = function(event) {
                         } else {
                             imgEl.src = res.Poster;
                         }
-        
-                        descDiv.appendChild(imgEl);
+
+                        imgDiv.appendChild(imgEl);
+                        rowDiv.appendChild(imgDiv);
         
                         var titleH2 = document.createElement('h2');
                         var title = res.Title;
@@ -88,21 +93,32 @@ form.onsubmit = function(event) {
                         plotP.appendChild(plotText);
     
                         descDiv.appendChild(plotP);
+
+                        rowDiv.appendChild(descDiv);
+
+                        resultDiv = document.getElementById('result');
+                        resultDiv.appendChild(rowDiv);
+
+                        rowDiv.className = 'row';
+                        descDiv.className = 'col-md-6';
+                        imgDiv.className = 'col-md-6';
+                        imgEl.className = 'img-responsive';
+                        
     
                     });
                     
-                    divEl.appendChild(descDiv);
+                    // rowDiv.appendChild(descDiv);
                     
         
-                    resultDiv = document.getElementById('result');
-                    resultDiv.appendChild(divEl);
+                    // resultDiv = document.getElementById('result');
+                    // resultDiv.appendChild(rowDiv);
                 }
             } else {
                 console.log('has children');
                 document.getElementById('result').innerHTML = "";
 
-                var divEl = document.createElement('div');
-                var descDiv = document.createElement('div');
+                // var rowDiv = document.createElement('div');
+                // var descDiv = document.createElement('div');
     
                 for(var i = 0; i < result.Search.length; i++) {
                     var movieId = result.Search[i].imdbID;
@@ -111,23 +127,30 @@ form.onsubmit = function(event) {
                         url: `http://www.omdbapi.com/?i=${movieId}&plot=full&apikey=7c05aa35`,
                         method: "GET",
                     }).done(function(res) {
-    
+                        
+                        var rowDiv = document.createElement('div');
+                        var descDiv = document.createElement('div');
+                        var imgDiv = document.createElement('div');
+
                         var imgEl = document.createElement('img');
 
-                        if(res.Poster == "N/A") {
-                            imgEl.src = './images/no-image-found-360x260.png';
+                        console.log(res.Poster);
+
+                        if(res.Poster === "N/A") {
+                            imgEl.src = './assets/images/no-image-found-360x260.png';
                         } else {
                             imgEl.src = res.Poster;
                         }
-                        
-        
-                        descDiv.appendChild(imgEl);
+
+                        imgDiv.appendChild(imgEl);
+                        rowDiv.appendChild(imgDiv);
         
                         var titleH2 = document.createElement('h2');
                         var title = res.Title;
                         var year = res.Year;
                         var titleText = document.createTextNode(`${title} (${year})`);
                         titleH2.appendChild(titleText);
+                        title.H2.className = 'text-center';
                         descDiv.appendChild(titleH2);
     
                         var directorH5 = document.createElement('h5');
@@ -168,14 +191,25 @@ form.onsubmit = function(event) {
                         plotP.appendChild(plotText);
     
                         descDiv.appendChild(plotP);
+
+                        rowDiv.appendChild(descDiv);
+
+                        resultDiv = document.getElementById('result');
+                        resultDiv.appendChild(rowDiv);
+
+                        rowDiv.className = 'row';
+                        descDiv.className = 'col-md-6';
+                        imgDiv.className = 'col-md-6';
+                        imgEl.className = 'img-responsive';
+                        
     
                     });
                     
-                    divEl.appendChild(descDiv);
+                    // rowDiv.appendChild(descDiv);
                     
         
-                    resultDiv = document.getElementById('result');
-                    resultDiv.appendChild(divEl);
+                    // resultDiv = document.getElementById('result');
+                    // resultDiv.appendChild(rowDiv);
                 }
             }
 
