@@ -150,7 +150,7 @@ form.onsubmit = function(event) {
                         var year = res.Year;
                         var titleText = document.createTextNode(`${title} (${year})`);
                         titleH2.appendChild(titleText);
-                        title.H2.className = 'text-center';
+                        titleH2.className = 'text-center';
                         descDiv.appendChild(titleH2);
     
                         var directorH5 = document.createElement('h5');
