@@ -9,7 +9,9 @@ body {
 }
 
 #result .row {
-    margin: 50px; 
+    margin: 50px;
+    border-bottom: black 1px solid;
+    padding-bottom: 50px;
 }
 
 .form-group {
