@@ -94,6 +94,7 @@ function movieSearch(url) {
                             moreInfoText = document.createTextNode(`Genre: ${res.Genre}. Rated: ${res.Rated}. Runtime: ${res.Runtime}`);
                             moreInfoH6.appendChild(moreInfoText);
                             descDiv.appendChild(moreInfoH6);
+
         
                             var ratingsDiv = document.createElement('div');
                             for(var i = 0; i < res.Ratings.length; i++) {
@@ -118,6 +119,8 @@ function movieSearch(url) {
 
                             rowDiv.appendChild(descDiv);
 
+                            //getTrailer(movieId, rowDiv);
+
                             var resultDiv = document.getElementById('result');
                             resultDiv.appendChild(rowDiv);
 
@@ -125,7 +128,8 @@ function movieSearch(url) {
                             descDiv.className = 'col-md-6';
                             imgDiv.className = 'col-md-6';
                             imgEl.className = 'img-responsive';
-        
+
+                            
                         });
                         
                         // rowDiv.appendChild(descDiv);
@@ -145,6 +149,7 @@ function createPageBtn(pageNum, title) {
     pageButton.appendChild(pageBtnText);
     pageBtnDiv.className = 'form-group';
     pageBtnDiv.appendChild(pageButton);
+    pageButton.className = 'moreButton';
 
     pageButton.onclick = () => {
         pageNum++;
@@ -153,4 +158,22 @@ function createPageBtn(pageNum, title) {
         movieSearch(newUrl);
     }
 }
+
+// function getTrailer(id, div) {
+//     $.ajax({
+//         url: `https://api.themoviedb.org/3/movie/${id}?api_key=efbe4b981116f33b228495d0d6f506e5&append_to_response=videos`,
+//         method: "GET",
+//     }).done(function(vidRes) {
+//         console.log('Vid RES: ', vidRes.videos.results[0].key);
+//         var youtubeKey = vidRes.videos.results[0].key;
+//         var vidDiv = document.createElement('div');
+//         var iframe = document.createElement('iframe');
+//         iframe.src = `https://www.youtube.com/embed/${youtubeKey}`;
+//         vidDiv.className = 'col-md-4';
+
+//         vidDiv.appendChild(iframe);
+//         div.appendChild(vidDiv);
+
+//     });
+// }
 
