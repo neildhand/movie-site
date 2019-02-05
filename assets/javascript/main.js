@@ -1,33 +1,43 @@
+//movie form element
 var form = document.getElementById("movie-form");
 
+//on movie search
 form.onsubmit = function(event) {
     event.preventDefault();
 
+    //delete previous search results 
     if(document.getElementById('result').hasChildNodes()) {
         document.getElementById('result').innerHTML = "";
     }
 
+    //delete previous children from pageBtn div
     if(document.getElementById('pageBtn').hasChildNodes()) {
         document.getElementById('pageBtn').innerHTML = "";
     }
 
     console.log(form.movieTitle.value);
-
+    
+    //grab title user has submitted
     var title = form.movieTitle.value;
 
+    //set pageNumber to 1
     var pageNumber = 1;
     console.log(pageNumber);
 
     var url = `http://www.omdbapi.com/?s=${title}&page=${pageNumber}&apikey=7c05aa35`;
     console.log(url);
-
+    
+    //call movieSearch function for ajax GET request from omdbapi
     movieSearch(url);
 
+    //call createPageBtn function to create 'More' button
     createPageBtn(pageNumber, title);
 
 };
 
+//movieSearch function for AJAX GET request from omdbapi
 function movieSearch(url) {
+    //ajax request using jQuery
     $.ajax({
         url: url,
         method: "GET",
@@ -35,6 +45,7 @@ function movieSearch(url) {
             console.log(`success: ${result.Response}`);
             console.log(result);
 
+            //check for totalResults to manage 'More' button
             if (result.totalResults > 10) {
                 console.log(Math.floor((result.totalResults/10) + 1));
             }
@@ -60,6 +71,8 @@ function movieSearch(url) {
                             var imgEl = document.createElement('img');
 
                             console.log(res.Poster);
+
+                            //getTrailer(movieId, rowDiv);
 
                             if(res.Poster === "N/A") {
                                 imgEl.src = './assets/images/no-image-found-360x260.png';
@@ -104,6 +117,7 @@ function movieSearch(url) {
                                 ratingsH6.appendChild(ratingsText);
                                 ratingsDiv.appendChild(ratingsH6);
                             }
+
                             descDiv.appendChild(ratingsDiv);
         
                             var ratingsH6 = document.createElement('h6');
@@ -118,8 +132,6 @@ function movieSearch(url) {
                             descDiv.appendChild(plotP);
 
                             rowDiv.appendChild(descDiv);
-
-                            //getTrailer(movieId, rowDiv);
 
                             var resultDiv = document.getElementById('result');
                             resultDiv.appendChild(rowDiv);
@@ -164,15 +176,16 @@ function createPageBtn(pageNum, title) {
 //         url: `https://api.themoviedb.org/3/movie/${id}?api_key=efbe4b981116f33b228495d0d6f506e5&append_to_response=videos`,
 //         method: "GET",
 //     }).done(function(vidRes) {
-//         console.log('Vid RES: ', vidRes.videos.results[0].key);
-//         var youtubeKey = vidRes.videos.results[0].key;
-//         var vidDiv = document.createElement('div');
-//         var iframe = document.createElement('iframe');
-//         iframe.src = `https://www.youtube.com/embed/${youtubeKey}`;
-//         vidDiv.className = 'col-md-4';
+//         console.log(vidRes);
+//         console.log(id);
+//         // var youtubeKey = vidRes.videos.results[0].key;
+//         // var vidDiv = document.createElement('div');
+//         // var iframe = document.createElement('iframe');
+//         // iframe.src = `https://www.youtube.com/embed/${youtubeKey}`;
+//         // vidDiv.className = 'col-md-4';
 
-//         vidDiv.appendChild(iframe);
-//         div.appendChild(vidDiv);
+//         // vidDiv.appendChild(iframe);
+//         // div.appendChild(vidDiv);
 
 //     });
 // }
