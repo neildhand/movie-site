@@ -24,7 +24,7 @@ form.onsubmit = function(event) {
     var pageNumber = 1;
     console.log(pageNumber);
 
-    var url = `http://www.omdbapi.com/?s=${title}&page=${pageNumber}&apikey=7c05aa35`;
+    var url = `https://www.omdbapi.com/?s=${title}&page=${pageNumber}&apikey=7c05aa35`;
     console.log(url);
     
     //call movieSearch function for ajax GET request from omdbapi
@@ -60,7 +60,7 @@ function movieSearch(url) {
                         var movieId = result.Search[i].imdbID;
         
                         $.ajax({
-                            url: `http://www.omdbapi.com/?i=${movieId}&plot=full&apikey=7c05aa35`,
+                            url: `https://www.omdbapi.com/?i=${movieId}&plot=full&apikey=7c05aa35`,
                             method: "GET",
                         }).done(function(res) {
 
@@ -166,7 +166,7 @@ function createPageBtn(pageNum, title) {
     pageButton.onclick = () => {
         pageNum++;
         console.log(pageNum);
-        newUrl = `http://www.omdbapi.com/?s=${title}&page=${pageNum}&apikey=7c05aa35`
+        newUrl = `https://www.omdbapi.com/?s=${title}&page=${pageNum}&apikey=7c05aa35`
         movieSearch(newUrl);
     }
 }
